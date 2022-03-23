@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="会议时间：2022-03-16上午记录人：林先扬  赖刚勇  发现的问题：无  解决的思路： 介绍了最新的ImageNet中的SOAT论文(VAN)，论文主要说通过分解了大核卷积使得其在较低参数量和较低Flops的情况下，使用大核卷积的局部注意的优点和相对小核卷积较好的全局依赖的特点构建新的主干网络获取当前最好的IamgeNet实验结果。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="会议记录（2022-03-16）">
+<meta property="og:url" content="http://example.com/posts/20220316d63ff3e.html">
+<meta property="og:site_name" content="智能计算机团队会议记录">
+<meta property="og:description" content="会议时间：2022-03-16上午记录人：林先扬  赖刚勇  发现的问题：无  解决的思路： 介绍了最新的ImageNet中的SOAT论文(VAN)，论文主要说通过分解了大核卷积使得其在较低参数量和较低Flops的情况下，使用大核卷积的局部注意的优点和相对小核卷积较好的全局依赖的特点构建新的主干网络获取当前最好的IamgeNet实验结果。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-16T13:57:40.000Z">
+<meta property="article:modified_time" content="2022-03-16T14:06:49.558Z">
+<meta property="article:author" content="ArtificialCalculation">
+<meta property="article:tag" content="会议记录">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/posts/20220316d63ff3e.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>会议记录（2022-03-16） | 智能计算机团队会议记录</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">智能计算机团队会议记录</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/posts/20220316d63ff3e.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ArtificialCalculation">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="智能计算机团队会议记录">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          会议记录（2022-03-16）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-03-16 21:57:40 / 修改时间：22:06:49" itemprop="dateCreated datePublished" datetime="2022-03-16T21:57:40+08:00">2022-03-16</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>会议时间：2022-03-16上午<br>记录人：林先扬</p>
+<ul>
+<li><p><strong>赖刚勇</strong></p>
+<ol>
+<li><p>发现的问题：无</p>
+</li>
+<li><p>解决的思路：</p>
+<p>介绍了最新的ImageNet中的SOAT论文(VAN)，论文主要说通过分解了大核卷积使得其在较低参数量和较低Flops的情况下，使用大核卷积的局部注意的优点和相对小核卷积较好的全局依赖的特点构建新的主干网络获取当前最好的IamgeNet实验结果。</p>
+<span id="more"></span></li>
+<li><p>完成的实验：</p>
+<p>复现VAN，SWIN，并用在224×224×3图片数据集的情况下的结果。</p>
+</li>
+<li><p>结果数据：</p>
+<p>在重头训练的情况下，VAN较SWIN得到更快和更好的结果。</p>
+<p>但把VAN并修改到3D后，在AD数据集上只得到Val_acc:0.81, test_acc:0.644。</p>
+</li>
+<li><p>接下来工作：</p>
+<p>分析在修改VAN的情况下，在AD数据集上是否能获取更好结果。</p>
+</li>
+</ol>
+</li>
+<li><p><strong>米晨晰</strong></p>
+<ol>
+<li><p>发现的问题：</p>
+<ul>
+<li>使用2D Unet + class weight strategy进行分割的结果分析：<ul>
+<li>相比2D Unet + 人为分配标签所占loss权重方法而言，各个标签的分割准确率均有提升</li>
+<li>不需要人为设置class weight，而是让模型根据每一批输入的样本的情况来分配标签所占的loss权重</li>
+<li>问题在于左右冠状动脉的分割效果只有0.6，只提升了5-6个百分点<ol>
+<li>左右冠状动脉分割情况：<ul>
+<li>在远离冠状动脉口的一端，一些细小的分支很容易缺失</li>
+<li>与背景之间对比度不大使得一些不应该被分类成左右冠状动脉的体素被错误分类</li>
+</ul>
+</li>
+<li>其他标签：<ul>
+<li>平均dice在0.78 - 0.95之间，分割效果还可以</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>解决的思路：</p>
+<ul>
+<li>使用Frangi filter对图像进行处理，将滤波处理后获得的血管特征作为附加信息放进网络模型进行训练</li>
+</ul>
+</li>
+<li><p>完成的实验：</p>
+<ul>
+<li><p>2D Unet + 人为分配标签所占loss权重进行分割</p>
+</li>
+<li><p>使用2D Unet + class weight strategy进行分割</p>
+</li>
+</ul>
+</li>
+<li><p>结果数据：</p>
+<ul>
+<li>1-5标签的分割效果不错，平均dice在0.78-0.95</li>
+<li>6、7标签即左右冠状动脉标签分割效果只有0.6左右</li>
+</ul>
+</li>
+<li><p>接下来工作：</p>
+<ul>
+<li>使用Frangi filter对图像进行处理，将滤波处理后获得的血管特征作为附加信息放进网络模型进行训练</li>
+<li>用现有的分割结果开始进行特征数据的测量</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p><strong>甘孟坤</strong></p>
+<ol>
+<li><p>发现的问题：</p>
+<p>回归实验时，回归的实验结果不理想</p>
+</li>
+<li><p>解决的思路：</p>
+<p>尝试采用不同的回归模型，并且使用特征选择的方法</p>
+</li>
+<li><p>完成的实验：</p>
+<p>使用逻辑回归、全连接神经网络、随机森林对数据进行回归预测</p>
+</li>
+<li><p>结果数据：<br>a.分割测量数据回归结果<br>  train AUC mean = 0.837086467<br>  valid AUC mean = 0.550360195<br>b.医生测量数据回归结果<br>  train AUC mean = 0.83466230<br>  valid AUC mean = 0.575844988<br>c.临床数据回归结果<br>  train AUC mean = 0.866806637<br>  valid AUC mean = 0.60870095<br>d.医生数据+临床数据回归结果<br>  train AUC mean = 0.898291399<br>  valid AUC mean = 0.621186869<br>e.分割数据+临床数据回归结果<br>  train AUC mean = 0.914960538<br>  valid AUC mean = 0.647828283</p>
+</li>
+<li><p>接下来工作：</p>
+<p>阅读论文，参照论文中的结论挑选出最相关的特征进行回归预测</p>
+</li>
+</ol>
+</li>
+<li><p><strong>罗百荣</strong></p>
+<ol>
+<li><p>发现的问题</p>
+<p>itk-snap无法兼容libtorch，也就无法实现向其中添加深度学习算法的设想。</p>
+</li>
+<li><p>解决的思路</p>
+<p>尝试mitk</p>
+</li>
+<li><p>完成的实验</p>
+<p>itk-snap下各种配opencv和libtorch的版本，最后完成opencv，未完成libtorch</p>
+</li>
+<li><p>结果数据：无</p>
+</li>
+<li><p>接下来工作</p>
+<p>查找mitk相关资料</p>
+</li>
+</ol>
+</li>
+<li><p><strong>梁浩霖</strong></p>
+<ol>
+<li><p>发现的问题：</p>
+<p>accuracy函数、loss函数、模型最后的全连接层、样本不均衡且大比例样本标签为1，这些问题的组合恰巧使得最后的Accuracy结果看上去没有问题。</p>
+</li>
+<li><p>解决的思路：</p>
+<p>不使用torchmetric提供的准确率计算函数，在模型的全连接层输出前加上Softmax层，改变loss函数，在样本采集时对少样本量的样本进行多次采样，模型训练结束的评估要参考多个指标</p>
+</li>
+<li><p>完成的实验：无</p>
+</li>
+<li><p>结果数据：无</p>
+</li>
+<li><p>接下来工作：</p>
+<p>采用多指标评估模型并重新实现之前的实验，纠正之前实验过程中的错误</p>
+</li>
+</ol>
+</li>
+<li><p><strong>陈扬</strong></p>
+<ol>
+<li><p>发现的问题：</p>
+<p>想复现pointasnl论文的，作者给的源码是TensorFlow版本的，而且他把一些常用的函数编译到TensorFlow库里面了，是用c++代码写的，而且这是两年前的论文，里面一些代码都不兼容现在的版本了，所以会报错误</p>
+</li>
+<li><p>解决的思路：</p>
+<p>网上找资料弄了一两天没弄好，然后我请教了华彬师兄，他帮我解决了一部分问题，但是还是有问题</p>
+</li>
+<li><p>完成的实验：</p>
+<p>用pytorch写pointasnl和pointweb结合的代码，目前把最核心的降采样提取特征模块写完了</p>
+</li>
+<li><p>结果数据：无</p>
+</li>
+<li><p>接下来工作：继续完善代码</p>
+</li>
+</ol>
+</li>
+<li><p><strong>邓竞</strong></p>
+<ol>
+<li><p>发现的问题：进一步提升和对比去噪的性能</p>
+</li>
+<li><p>解决的思路：对比和学习一些不同的传统方法</p>
+</li>
+<li><p>完成的实验：</p>
+<p>这周主要对比和学习一些不同的传统方法例如：低通滤波、高斯滤波等，了解他们的原理过程，计算传统方法降噪后的SNR与深度学习降噪后的SNR做比较</p>
+</li>
+<li><p>结果数据：<br>对比得到深度学习的降噪效果是最好的，在平滑背景的同时也保留了粒子的细节。深度学习去噪的图像SNR在7左右，而传统去噪后图像SNR在-5左右</p>
+</li>
+<li><p>接下来工作：</p>
+<p>接下来看看能不能把一些传统方法的思维融入到深度学习中，力求在高SNR和保留粒子细节中找到一个平衡点，达到最好的去噪效果</p>
+</li>
+</ol>
+</li>
+<li><p><strong>欧嘉城</strong></p>
+<ol>
+<li><p>发现问题：</p>
+<p>这个星期还是制作冷冻电镜用于目标检测的数据集，但是冷冻电镜的数据集经过本人查看，很多数据集都没有BOX的标签信息，因此需要自己去打标签完善用于训练的数据集。但是制作数据集的过程中发现转为uint8的图片是读取不出来这个是由于mrc电镜文件转为图片是经过复杂的算法的。</p>
+</li>
+<li><p>解决思路：</p>
+<p>只能通过别人写好的软件将mrc转为图片最后放<br>入标签软件中进行打标签。</p>
+</li>
+<li><p>完成的实验：暂时寻找到3种符合条件的粒子可以用于打标签和训练的</p>
+</li>
+<li><p>结果数据：3种符合条件的粒子</p>
+</li>
+<li><p>接下来工作：</p>
+<p>接下来还是得一个个冷冻电镜的数据集进行查询，寻找能够用于训练的粒子，并且能够将它转化为unit8图片，并且完成他们的打标签工作</p>
+</li>
+</ol>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E4%BC%9A%E8%AE%AE%E8%AE%B0%E5%BD%95/" rel="tag"># 会议记录</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/2022030941fc69fb.html" rel="prev" title="会议记录（2022-03-09）">
+      <i class="fa fa-chevron-left"></i> 会议记录（2022-03-09）
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/posts/202203230.html" rel="next" title="">
+       <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ArtificialCalculation</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ArtificialCalculation</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
