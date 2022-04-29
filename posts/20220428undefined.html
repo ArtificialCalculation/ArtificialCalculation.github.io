@@ -28,7 +28,7 @@
 <meta property="og:description" content="会议时间：2022-04-28上午 记录人：林先扬 本周总结 罗琳 发现的问题 植株叶片总面积数据部分出现非正常情况，需要进行每株每个节点的检测  解决的思路 针对每个植株的数据，在记录植株叶片数和叶片面积的Excel表中画出面积随时间的变化图，以便检查错误节点">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-04-28T04:55:40.000Z">
-<meta property="article:modified_time" content="2022-04-28T14:47:17.950Z">
+<meta property="article:modified_time" content="2022-04-29T15:12:25.821Z">
 <meta property="article:author" content="ArtificialCalculation">
 <meta property="article:tag" content="会议记录">
 <meta name="twitter:card" content="summary">
@@ -173,10 +173,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-04-28 12:55:40 / 修改时间：22:47:17" itemprop="dateCreated datePublished" datetime="2022-04-28T12:55:40+08:00">2022-04-28</time>
+              <time title="创建时间：2022-04-28 12:55:40" itemprop="dateCreated datePublished" datetime="2022-04-28T12:55:40+08:00">2022-04-28</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-04-29 23:12:25" itemprop="dateModified" datetime="2022-04-29T23:12:25+08:00">2022-04-29</time>
+              </span>
 
           
 
@@ -227,7 +233,8 @@
 <p>见PPT</p>
 </li>
 <li><p>接下的工作</p>
-<p>可能transformer的参数里太大，导致很难后收敛，再看看其中代码是否出错</p>
+<p>可能transformer的参数里太大，导致很难后收敛，再看看其中代码是否出错；</p>
+<p>使用最新高引pso算法替换ga</p>
 </li>
 </ol>
 </li>
@@ -259,7 +266,8 @@
 <p>GPU内存里面需要保存数据+模型参数，之前训练不了是因为模型的维度较高和图太稠密，导致一次训练消耗的内存空间太多。<br>解决方法是降低边的数量，缩小图的规模；<br>现使用KNN的方法来建边，即对每个样本，选取离该样本最近的K个邻居来建边</p>
 </li>
 <li><p>完成的实验</p>
-<p>设置不同的K值来进行KNN的方法建边，K的范围从K=5到K=500</p>
+<p>设置不同的K值来进行KNN的方法建边，K的范围从K=5到K=500；</p>
+<p>跟李艺讨论使用超图神经网络的可行性，和各自模型中遇到的问题和解决的可能方法。</p>
 </li>
 <li><p>结果数据</p>
 <p>ACC：0.690-0.705（EMD）0.724-0.730（欧式）<br>AUC：0.745-0.755（EMD）0.790-0.800（欧式）<br>且实验结果显示K值不敏感</p>
@@ -290,11 +298,17 @@
 </li>
 <li><p>甘孟坤</p>
 <ol>
-<li>发现的问题<br>总结论文中的常见特征选择思路</li>
-<li>解决的思路<br>采用不同模型对比实验</li>
-<li>完成的实验<br>使用金典机器学习模型跑出不同的实验结果</li>
-<li>结果数据<br>参见汇报ppt</li>
-<li>接下的工作<br>实验结果分析</li>
+<li><p>发现的问题<br>总结论文中的常见特征选择思路</p>
+</li>
+<li><p>解决的思路<br>采用不同模型对比实验</p>
+</li>
+<li><p>完成的实验<br>使用经典机器学习模型跑出不同的实验结果</p>
+</li>
+<li><p>结果数据<br>参见汇报ppt</p>
+</li>
+<li><p>接下的工作</p>
+<p>a.分析特征<br>b.对比数值之间的差距（平均值+标准差）<br>c.两个数据差距很大的情况下，分析情况的原因<br>d.差距很大对于最终的预测是否有影响<br>e.预测个例效果差的展示和分析讨论</p>
+</li>
 </ol>
 </li>
 </ul>
