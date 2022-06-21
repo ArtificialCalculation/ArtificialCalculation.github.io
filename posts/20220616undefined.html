@@ -20,28 +20,33 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="智能计算机团队会议记录">
-<meta property="og:url" content="http://example.com/page/2/index.html">
+  <meta name="description" content="会议时间：2022-06-16下午 记录人：林先扬  汇报人名字：陈扬  发现的问题阅读论文  2021CVPR     SCF-Net: Learning Spatial Contextual Features for Large-Scale Point Cloud Segmentation  解决的思路1）局部极坐标表示块2）双距离注意池化块3）全局上下文特征块">
+<meta property="og:type" content="article">
+<meta property="og:title" content="会议记录（2022-06-16）">
+<meta property="og:url" content="http://example.com/posts/20220616undefined.html">
 <meta property="og:site_name" content="智能计算机团队会议记录">
+<meta property="og:description" content="会议时间：2022-06-16下午 记录人：林先扬  汇报人名字：陈扬  发现的问题阅读论文  2021CVPR     SCF-Net: Learning Spatial Contextual Features for Large-Scale Point Cloud Segmentation  解决的思路1）局部极坐标表示块2）双距离注意池化块3）全局上下文特征块">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-06-16T04:55:40.000Z">
+<meta property="article:modified_time" content="2022-06-21T11:44:05.651Z">
 <meta property="article:author" content="ArtificialCalculation">
+<meta property="article:tag" content="会议记录">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/page/2/">
+<link rel="canonical" href="http://example.com/posts/20220616undefined.html">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>智能计算机团队会议记录</title>
+  <title>会议记录（2022-06-16） | 智能计算机团队会议记录</title>
   
 
 
@@ -139,13 +144,14 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/posts/2022030941fc69fb.html">
+    <link itemprop="mainEntityOfPage" href="http://example.com/posts/20220616undefined.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -157,10 +163,9 @@
       <meta itemprop="name" content="智能计算机团队会议记录">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/2022030941fc69fb.html" class="post-title-link" itemprop="url">会议记录（2022-03-09）</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          会议记录（2022-06-16）
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -169,14 +174,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-03-09 00:00:00" itemprop="dateCreated datePublished" datetime="2022-03-09T00:00:00+08:00">2022-03-09</time>
+              <time title="创建时间：2022-06-16 12:55:40" itemprop="dateCreated datePublished" datetime="2022-06-16T12:55:40+08:00">2022-06-16</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-12 23:24:41" itemprop="dateModified" datetime="2022-03-12T23:24:41+08:00">2022-03-12</time>
+                <time title="修改时间：2022-06-21 19:44:05" itemprop="dateModified" datetime="2022-06-21T19:44:05+08:00">2022-06-21</time>
               </span>
 
           
@@ -190,122 +195,134 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>会议时间: 2022-03-09下午</p>
-<p>记录人：梁浩霖</p>
-<ol>
-<li><p>汇报人：王丹</p>
+        <p>会议时间：2022-06-16下午</p>
+<p>记录人：林先扬</p>
 <ul>
-<li><p>汇报内容：</p>
-<p>总结了一下之前做的工作：肺部肿瘤检测与分割项目，其中训练集有295例，测试集有125例，每个病历都有标签，用nnunet模型跑出的结果dice为0.81，nnformer跑出的结果为0.79。接下来的任务是看transBTSV2论文，以及跑通论文给的代码。</p>
+<li><p><strong>汇报人名字：陈扬</strong></p>
+<ol>
+<li><p>发现的问题<br>阅读论文  2021CVPR     SCF-Net: Learning Spatial Contextual Features for Large-Scale Point Cloud Segmentation</p>
 </li>
+<li><p>解决的思路<br>1）局部极坐标表示块<br>2）双距离注意池化块<br>3）全局上下文特征块</p>
+<span id="more"></span></li>
+<li><p>完成的实验</p>
+<p>无</p>
+</li>
+<li><p>结果数据<br>无</p>
+</li>
+<li><p>接下的工作<br>将SCF-Net的思想应用到自己的论文中去，寻找更多的可能</p>
+</li>
+</ol>
+</li>
+<li><p><strong>汇报人名字：米晨晰</strong></p>
+<ol>
+<li><p>发现的问题</p>
+</li>
+<li><p>解决的思路</p>
+</li>
+<li><p>完成的实验</p>
+<p>写完了introduction、method部分</p>
+</li>
+<li><p>结果数据</p>
+</li>
+<li><p>接下的工作</p>
+<p>继续写完论文，并进行投稿</p>
+</li>
+</ol>
+</li>
+<li><p><strong>汇报人名字：梁浩霖</strong></p>
+<ol>
+<li>发现的问题<ul>
+<li>缺少VGG对比实验</li>
+<li>论文中没有解释对比实验中对比方法的性能下降原因</li>
+<li>缺少对预处理的描述</li>
+</ul>
+</li>
+<li>解决的思路</li>
+<li>完成的实验</li>
+<li>结果数据</li>
+<li>接下的工作<ul>
+<li>补充VGG对比实验</li>
+<li>补全关于g-ACNN、EL的消融实验</li>
+<li>完成小论文</li>
 </ul>
 </li>
 </ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/posts/2022030941fc69fb.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/posts/2022030296fdeefa.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="ArtificialCalculation">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="智能计算机团队会议记录">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/2022030296fdeefa.html" class="post-title-link" itemprop="url">会议记录（2022-03-02）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-02 00:00:00" itemprop="dateCreated datePublished" datetime="2022-03-02T00:00:00+08:00">2022-03-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-12 23:24:41" itemprop="dateModified" datetime="2022-03-12T23:24:41+08:00">2022-03-12</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>会议时间: 2022-03-02下午</p>
-<p>记录人：何诗婷</p>
+</li>
+<li><p><strong>汇报人名字：欧嘉城</strong></p>
 <ol>
-<li><p>汇报人：欧嘉城</p>
+<li><p>发现的问题</p>
+<p>阅读了2022在nature communication上冷冻电镜粒子挑选的论文，论文提供了有标签的数据集</p>
+</li>
+<li><p>解决的思路</p>
+<p>将数据集运用到自己的模型上，并且对比topaz,relion等流行的软件</p>
+</li>
+<li><p>完成的实验</p>
+<p>在自己的模型上，效果要比topaz好</p>
+</li>
+<li><p>结果数据</p>
+<p>使用论文提供的数据集，模型表达不错</p>
+</li>
+<li><p>接下来工作</p>
+<p>继续选择多几个数据集，并且完成在topaz和relion上的对比实验</p>
+</li>
+</ol>
+</li>
+<li><p><strong>汇报人名字：谢锐伟</strong></p>
+<ol>
+<li><p>发现的问题</p>
 <ul>
-<li><p>汇报内容：</p>
-<p>之前使用的是公开冷冻电镜一个带有标注的数据集，进行在改进的Yolo框架上进行训练得到的结果达到最好的AP有55，但是需要在公开的数据集上进行一个泛化能力的检测还有抗噪音的一个检测，因此需要多个数据集在框架上进行这两个实验，但是公开的数据集并没有标注，需要自己手动打标签，完成接下来的实验内容</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/posts/2022030296fdeefa.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
+<li>研究该ShapePu  与EN和Unet的结合解决涂鸦式的分割</li>
+<li>本文提出ShapePU:一种用于弱监督心脏分割的<br>(EM)方法和边际概本最人化方法,性能表现SOTA!代码刚刚开源!单位:复旦大学（庄吓海团队)心脏分割是心血管疾病诊断的重要步骤。然而，逐像素密集标记既昂贵又耗时。Scribble 作乍为稀疏社释的——种形式，比完整注释更易于访问。然而，在Scribble监督较弱的情况下训练分割网络尤其具有挑战性。为了解决这个问题，我们提出了一种新的Scribble引导的心脏分割方法，基于正无标签(PU)学习框架和全局一致性正则化，称为ShapePU。为了通过PU学习利用未标记的像素，我们首先提出了一种期望最大化(EM)算法来估计每个类别在未标记像素中的比例。给定估计的比率，然后我们引入边际概率最大化来识别未标记像素的类别。为了利用形状知识，我们将剪切操作应用于训练图像，并惩罚不一致的分割结果。在两个开放数据集上进行评估，即ACDC和MSCMRseg。</li>
+</ul>
+</li>
+<li><p>接下的工作：我们可以根据这涂鸦式PU学习方法，改进我们现在的分割模型</p>
+</li>
+</ol>
+</li>
+<li><p><strong>汇报人名字：邓竞</strong></p>
+<ol>
+<li><p>发现的问题</p>
+</li>
+<li><p>解决的思路</p>
+</li>
+<li><p>完成的实验<br>完成对比实验，用topaz挑选去噪后图片和去噪前图片的颗粒进行对比</p>
+</li>
+<li><p>结果数据<br>去噪后的图像的挑颗粒数量和准确度都明显提升了</p>
+</li>
+<li><p>接下的工作<br>继续完成对比实验，并撰写论文。</p>
+</li>
+</ol>
+</li>
+</ul>
+
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
+          <div class="post-tags">
+              <a href="/tags/%E4%BC%9A%E8%AE%AE%E8%AE%B0%E5%BD%95/" rel="tag"># 会议记录</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/20220525undefined.html" rel="prev" title="会议纪要（2022-05-25）">
+      <i class="fa fa-chevron-left"></i> 会议纪要（2022-05-25）
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
       </footer>
+    
   </article>
   
   
   
-
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-  </nav>
 
 
 
